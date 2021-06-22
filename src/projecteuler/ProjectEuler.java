@@ -19,7 +19,7 @@ public class ProjectEuler {
         
         System.out.println("This project contains my progress in solving the problems at https://projecteuler.net \n");
         
-        Problem p = new Problem8();
+        Problem p = new Problem9();
         
         p.solve();
     }
