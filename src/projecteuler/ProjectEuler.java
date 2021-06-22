@@ -17,9 +17,11 @@ public class ProjectEuler {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        System.out.println("This project contains my progress in solving the problems at https://projecteuler.net");
+        System.out.println("This project contains my progress in solving the problems at https://projecteuler.net \n");
         
+        Problem p = new Problem1();
         
+        p.solve();
     }
     
 }
