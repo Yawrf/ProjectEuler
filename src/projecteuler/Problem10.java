@@ -1,6 +1,9 @@
 
 package projecteuler;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author rewil
@@ -14,21 +17,50 @@ public class Problem10 implements Problem{
     @Override
     public void solve() {
         int cap = 2000000;
-        int sum = 0;
         
-        for(int i = 3; i < cap; i += 2) if(isPrime(i)) sum += i;
+        Sieve s = new Sieve(cap);
+        long sum = 0;
+        for(int i : s.getPrimes()) {
+//            System.out.println("Prime: " + i);
+            sum += i;
+        }
         
         System.out.println(prompt + '\n');
         System.out.println("Sum: " + sum);
     }
     
-    private boolean isPrime(long check) {
-        if(check % 2 == 0) return false;
-        long root = (long) Math.ceil(Math.sqrt(check));
-        for(int i = 3; i <= root; i += 2) {
-            if(check % i == 0) return false;
+    private class Sieve{ // of Eratosthenes
+        
+        private int size = 0;
+        private boolean[] sieve = null;
+        private ArrayList<Integer> list = new ArrayList<>();
+        
+        public Sieve(int size) {
+            this.size = size;
+            sieve = new boolean[size];
+            Arrays.fill(sieve, true);
+            
+            if(size >= 0) sieve[0] = false;
+            if(size > 0)  sieve[1] = false;
+            calculate();
         }
-        return true;
+        
+        private void calculate() {
+            for(int i = 2; i * i < size; ++i) {
+                if(!sieve[i]) continue;
+                for(int j = i * i; j < size; j += i) {
+                    sieve[j] = false;
+                }
+            }
+            for(int i = 0; i < size; ++i) {
+                if(sieve[i]) list.add(i);
+            }
+        }
+        
+        public ArrayList<Integer> getPrimes() {
+            return (ArrayList<Integer>) list.clone();
+        }
+        
     }
 
 }
