@@ -19,11 +19,11 @@ public class ProjectEuler {
         
         System.out.println("This project contains my progress in solving the problems at https://projecteuler.net \n");
         
-                Problem p = new Problem15();
+                Problem p = new Problem16();
                 p.solve();
 
 //        try {
-//            runThroughX(9);
+//            runThroughX(15);
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        } 
