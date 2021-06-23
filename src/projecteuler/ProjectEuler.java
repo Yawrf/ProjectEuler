@@ -19,21 +19,21 @@ public class ProjectEuler {
         
         System.out.println("This project contains my progress in solving the problems at https://projecteuler.net \n");
         
-                Problem p = new Problem16();
-                p.solve();
+        Problem p = new Problem17();
+        p.solve();
 
-//        try {
-//            runThroughX(15);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } 
+//        runThroughX(20);
     }
     
-    public static void runThroughX(int x) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+    public static void runThroughX(int x) {
         String divider = "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=";
         for(int i = 1; i <= x; ++i) {
-            Problem p = (Problem) Class.forName("projecteuler.Problem" + i).newInstance();
-            p.solve();
+            try {
+                Problem p = (Problem) Class.forName("projecteuler.Problem" + i).newInstance();
+                p.solve();
+            } catch (Exception e) {
+                System.out.println("Problem " + i + " was not found");
+            }
             if(i != x) System.out.println('\n' + divider + '\n');
         }
     }
